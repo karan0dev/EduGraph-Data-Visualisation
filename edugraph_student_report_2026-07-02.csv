@@ -1,0 +1,36 @@
+Student ID,Full Name,Grade Level,Attendance (%),Math Score,Science Score,English Score,History Score,Fine Arts Score,Overall Average (%),Grade Letter,Status
+STU001,"Alexander Davis",9,83,65,84,70,63,77,72,C,Passing
+STU002,"Sophia Martinez",10,93,91,89,87,66,79,82,B,Passing
+STU003,"Liam Johnson",11,90,72,70,68,83,86,76,C,Passing
+STU004,"Olivia Rodriguez",9,94,76,75,69,79,74,75,C,Passing
+STU005,"Noah Smith",10,68,59,56,61,60,78,63,D,At Risk
+STU006,"Ava Williams",11,95,83,77,86,69,88,81,B,Passing
+STU007,"Ethan Brown",9,96,89,96,89,83,73,86,B,Passing
+STU008,"Isabella Jones",10,95,79,95,92,72,70,82,B,Passing
+STU009,"Mason Miller",11,91,81,90,84,70,85,82,B,Passing
+STU010,"Mia Garcia",9,92,85,78,77,75,79,79,C,Passing
+STU011,"Logan Wilson",10,86,79,71,75,66,69,72,C,Passing
+STU012,"Charlotte Anderson",11,96,83,78,72,86,82,80,B,Passing
+STU013,"Lucas Taylor",9,69,65,61,54,59,67,61,D,At Risk
+STU014,"Amelia Thomas",10,84,73,74,62,73,87,74,C,Passing
+STU015,"Oliver Moore",11,88,73,80,83,65,87,78,C,Passing
+STU016,"Harper Jackson",9,87,85,73,76,74,83,78,C,Passing
+STU017,"Elijah Martin",10,85,79,78,76,61,78,74,C,Passing
+STU018,"Evelyn Lee",11,90,80,76,85,80,75,79,C,Passing
+STU019,"James Thompson",9,85,70,75,68,63,76,70,C,Passing
+STU020,"Abigail White",10,84,73,81,79,64,73,74,C,Passing
+STU021,"Benjamin Harris",11,96,90,96,80,81,66,83,B,Passing
+STU022,"Emily Sanchez",9,85,86,71,71,72,71,74,C,Passing
+STU023,"Lucas Clark",10,73,68,66,66,55,82,67,D,At Risk
+STU024,"Elizabeth Ramirez",11,92,91,82,71,68,66,76,C,Passing
+STU025,"Henry Lewis",9,83,71,79,79,72,78,76,C,Passing
+STU026,"Sofia Robinson",10,95,89,78,91,88,85,86,B,Passing
+STU027,"Jacob Walker",11,83,71,64,82,58,75,70,C,Passing
+STU028,"Avery Young",9,95,81,74,93,84,86,84,B,Passing
+STU029,"Michael Allen",10,92,86,77,78,84,79,81,B,Passing
+STU030,"Ella King",11,91,73,72,89,71,86,78,C,Passing
+STU031,"Daniel Wright",9,87,77,80,71,81,89,80,B,Passing
+STU032,"Madison Scott",10,66,67,61,45,52,71,59,F,At Risk
+STU033,"Jackson Torres",11,90,72,85,79,78,78,78,C,Passing
+STU034,"Scarlett Nguyen",9,83,69,65,74,74,71,71,C,Passing
+STU035,"William Hill",10,87,70,76,63,69,85,73,C,Passing

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGraph — Student Performance Visualization Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Decorative Ambient Blobs for Glassmorphism Background -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- WELCOME LANDING PAGE -->
+    <div class="landing-page" id="landing-page">
+        <!-- Landing Header -->
+        <header class="landing-header glass-card">
+            <div class="landing-logo">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h2>EduGraph</h2>
+            </div>
+            <nav class="landing-nav">
+                <ul>
+                    <li><a href="#" class="landing-nav-link" data-tab="dashboard"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                    <li><a href="#" class="landing-nav-link" data-tab="directory"><i class="fa-solid fa-users"></i> Students</a></li>
+                    <li><a href="#" class="landing-nav-link" data-tab="analytics"><i class="fa-solid fa-chart-line"></i> Analytics</a></li>
+                    <li><a href="#" class="landing-nav-link" data-tab="dashboard"><i class="fa-solid fa-file-invoice"></i> Reports</a></li>
+                    <li><a href="#" class="landing-nav-link" data-tab="dashboard"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <button class="btn btn-secondary landing-login-btn" id="btn-landing-login">
+                <span>Login</span>
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            </button>
+        </header>
+
+        <!-- Landing Hero -->
+        <section class="landing-hero-section">
+            <!-- Ambient curved lines behind hero text -->
+            <div class="hero-bg-lines">
+                <svg viewBox="0 0 1200 350" fill="none">
+                    <path d="M 0,260 C 300,100 600,320 900,120 T 1200,180" stroke="rgba(79, 70, 229, 0.08)" stroke-width="3" />
+                    <path d="M 0,210 C 400,280 800,80 1200,130" stroke="rgba(124, 58, 237, 0.06)" stroke-width="2" />
+                </svg>
+            </div>
+            
+            <div class="landing-hero-text">
+                <h1 class="landing-hero-title">
+                    <span class="title-welcome">Welcome to</span>
+                    <span class="title-brand gradient-text">EduGraph</span>
+                </h1>
+                <p class="landing-hero-subtitle">Transforming student data into meaningful insights. Analyze. Visualize. Achieve Excellence.</p>
+                <div class="landing-hero-actions">
+                    <button class="btn btn-primary" id="btn-landing-start">Get Started <i class="fa-solid fa-rocket"></i></button>
+                    <button class="btn btn-secondary" id="btn-landing-explore">Explore Dashboard <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D Characters and Floating Cards Workspace -->
+        <div class="landing-visuals-container">
+            <!-- 3D Pedestal and Neon glows -->
+            <div class="center-pedestal"></div>
+            <div class="pouf-left"></div>
+            <div class="char-glow glow-left"></div>
+            <div class="char-glow glow-right"></div>
+
+            <!-- Left Character (Boy) -->
+            <div class="visual-character character-left">
+                <img src="boy_character.png" alt="Student Boy">
+            </div>
+
+            <!-- Central Large Interactive App Mockup Frame (Mac OS Style) -->
+            <div class="visual-interactive-board">
+                <div class="mockup-dashboard-frame glass-card">
+                    <!-- Window Controls and Address Bar -->
+                    <div class="mockup-window-bar">
+                        <div class="window-dots">
+                            <span class="w-dot red"></span>
+                            <span class="w-dot yellow"></span>
+                            <span class="w-dot green"></span>
+                        </div>
+                        <div class="window-address-bar">admin.edugraph.io</div>
+                    </div>
+                    <!-- Mockup Workspace Content Grid -->
+                    <div class="mockup-dashboard-grid">
+                        <!-- Left Panel: Overview + Attendance Bars -->
+                        <div class="mockup-col mockup-left-col">
+                            <!-- Overview KPI Grid -->
+                            <div class="mockup-card glass-card pad-xs">
+                                <div class="m-card-header">Overview</div>
+                                <div class="m-kpi-grid">
+                                    <div class="m-kpi">
+                                        <span>Students</span>
+                                        <strong>1,250</strong>
+                                        <span class="trend trend-up"><i class="fa-solid fa-caret-up"></i> 8.4%</span>
+                                    </div>
+                                    <div class="m-kpi">
+                                        <span>GPA</span>
+                                        <strong>3.42</strong>
+                                        <span class="trend trend-up"><i class="fa-solid fa-caret-up"></i> 4.7%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Attendance Trend (Bars) -->
+                            <div class="mockup-card glass-card pad-xs">
+                                <div class="m-card-header">Attendance Trend</div>
+                                <div class="m-bars">
+                                    <div class="m-bar" style="height: 35%"></div>
+                                    <div class="m-bar" style="height: 55%"></div>
+                                    <div class="m-bar" style="height: 80%"></div>
+                                    <div class="m-bar" style="height: 96%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Center Panel: Large Performance Line Chart -->
+                        <div class="mockup-col mockup-center-col">
+                            <div class="mockup-card glass-card pad-md height-full">
+                                <div class="m-card-header text-center">Academic Performance</div>
+                                <svg class="m-chart-line" viewBox="0 0 100 45">
+                                    <path d="M 8,32 Q 30,22 50,28 T 92,10" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="animated-path"></path>
+                                    <circle cx="92" cy="10" r="2.5" fill="var(--primary)"></circle>
+                                </svg>
+                                <div class="m-chart-legend">
+                                    <span><i class="fa-solid fa-circle" style="color: var(--primary); font-size: 5px;"></i> Average Score: 87.1%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Right Panel: Grade Donut + Compliance Progress -->
+                        <div class="mockup-col mockup-right-col">
+                            <!-- Grades -->
+                            <div class="mockup-card glass-card pad-xs girl-overlap">
+                                <div class="m-card-header">Grade Distribution</div>
+                                <div class="m-pie-box">
+                                    <svg class="m-chart-pie" viewBox="0 0 36 36">
+                                        <path class="ring-segment" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10b981" stroke-width="4.5" stroke-dasharray="45, 100"></path>
+                                        <path class="ring-segment" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#3b82f6" stroke-width="4.5" stroke-dasharray="35, 100" stroke-dashoffset="-45"></path>
+                                        <path class="ring-segment" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#ef4444" stroke-width="4.5" stroke-dasharray="20, 100" stroke-dashoffset="-80"></path>
+                                    </svg>
+                                    <div class="m-pie-legend">
+                                        <span>A: 45%</span>
+                                        <span>B: 35%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Compliance -->
+                            <div class="mockup-card glass-card pad-xs girl-overlap">
+                                <div class="m-card-header">Class Progression</div>
+                                <svg class="m-chart-line-green" viewBox="0 0 100 35">
+                                    <path d="M 6,28 Q 28,24 50,14 T 94,8" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="animated-path"></path>
+                                    <circle cx="94" cy="8" r="2.2" fill="#10b981"></circle>
+                                </svg>
+                                <div class="m-progress-label">92% Compliance</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Character (Girl) -->
+            <div class="visual-character character-right">
+                <img src="girl_character.png" alt="Student Girl">
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <section class="landing-features-section">
+            <div class="feature-card glass-card">
+                <div class="feature-icon-box" style="background: rgba(79, 70, 229, 0.1); color: var(--primary);">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <div class="feature-card-text">
+                    <h3>Smart Analytics</h3>
+                    <p>Advanced calculations to track performance and predict student outcomes.</p>
+                </div>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon-box" style="background: rgba(16, 185, 129, 0.1); color: var(--success);">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div class="feature-card-text">
+                    <h3>Visual Insights</h3>
+                    <p>Beautiful interactive visualizations that make analysis easy to understand.</p>
+                </div>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon-box" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div class="feature-card-text">
+                    <h3>Secure & Reliable</h3>
+                    <p>Your data is protected and saved locally in secure storage engines.</p>
+                </div>
+            </div>
+            <div class="feature-card glass-card">
+                <div class="feature-icon-box" style="background: rgba(245, 158, 11, 0.1); color: var(--warning);">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div class="feature-card-text">
+                    <h3>Real-time Updates</h3>
+                    <p>Watch metrics and charts recalculate instantly on new student additions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Getting Started Workflow Section -->
+        <section class="landing-workflow-section glass-card">
+            <div class="workflow-header">
+                <h3>Get Started with Your Own Data</h3>
+                <p>Skip the mock data. Import your student spreadsheet in seconds.</p>
+            </div>
+            <div class="workflow-steps-grid">
+                <div class="workflow-step-card glass-card">
+                    <div class="step-num">01</div>
+                    <div class="step-icon text-primary"><i class="fa-solid fa-file-csv"></i></div>
+                    <h4>Get Template</h4>
+                    <p>Download our structured template with preset subjects.</p>
+                    <button class="btn btn-xs btn-outline" id="btn-download-template">Download CSV <i class="fa-solid fa-download"></i></button>
+                </div>
+                <div class="workflow-step-card glass-card">
+                    <div class="step-num">02</div>
+                    <div class="step-icon text-success"><i class="fa-solid fa-upload"></i></div>
+                    <h4>Import active Sheet</h4>
+                    <p>Choose your student CSV data sheet from your computer.</p>
+                    <button class="btn btn-xs btn-outline" id="btn-upload-landing-trigger">Import File <i class="fa-solid fa-file-import"></i></button>
+                </div>
+                <div class="workflow-step-card glass-card">
+                    <div class="step-num">03</div>
+                    <div class="step-icon text-warning"><i class="fa-solid fa-square-poll-vertical"></i></div>
+                    <h4>Explore Workspace</h4>
+                    <p>Enter the portal to visualize trends, GPAs, and risks.</p>
+                    <button class="btn btn-xs btn-primary" id="btn-explore-landing-portal">Launch Hub <i class="fa-solid fa-circle-play"></i></button>
+                </div>
+            </div>
+            <!-- Hidden landing file input for uploads -->
+            <input type="file" id="landing-csv-file-input" accept=".csv" style="display: none;">
+        </section>
+    </div>
+
+    <!-- MAIN APP WORKSPACE CONTAINER -->
+    <div class="app-container" id="app-workspace">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h2>EduGraph</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active" data-tab="dashboard">
+                        <a href="#dashboard">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-tab="directory">
+                        <a href="#directory">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Students Directory</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" data-tab="analytics">
+                        <a href="#analytics">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <span>Analytics Deep Dive</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <img src="https://api.dicebear.com/7.x/adventurer/svg?seed=Felix" alt="User Avatar" class="user-avatar">
+                    <div class="user-info">
+                        <span class="user-name">Prof. Henderson</span>
+                        <span class="user-role">Administrator</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Panel Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <div class="header-title">
+                    <h1 id="page-title-heading">Student Performance Analytics</h1>
+                    <p class="header-subtitle" id="current-date-time">Thursday, July 2, 2026</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" id="btn-import-trigger">
+                        <i class="fa-solid fa-file-import"></i>
+                        <span>Import CSV</span>
+                    </button>
+                    <input type="file" id="workspace-csv-file-input" accept=".csv" style="display: none;">
+                    <button class="btn btn-secondary" id="btn-export">
+                        <i class="fa-solid fa-file-export"></i>
+                        <span>Export CSV</span>
+                    </button>
+                    <button class="btn btn-primary" id="btn-add-student">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add Student</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Filters Bar (Sticky/Top) -->
+            <section class="filters-bar glass-card">
+                <div class="filter-group search-group">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-student" placeholder="Search students by name...">
+                </div>
+                <div class="filter-controls">
+                    <div class="filter-select-wrapper">
+                        <label for="filter-grade">Grade Level</label>
+                        <select id="filter-grade" class="filter-select">
+                            <option value="all">All Grades</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                            <option value="11">Grade 11</option>
+                        </select>
+                    </div>
+                    <div class="filter-select-wrapper">
+                        <label for="filter-status">Status</label>
+                        <select id="filter-status" class="filter-select">
+                            <option value="all">All Students</option>
+                            <option value="passing">Passing (≥60%)</option>
+                            <option value="at-risk">At Risk (&lt;60% or &lt;75% Attendance)</option>
+                        </select>
+                    </div>
+                    <button class="btn-icon" id="btn-reset-filters" title="Reset Filters">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- TAB 1: DASHBOARD WORKSPACE -->
+            <div id="tab-dashboard" class="tab-pane active">
+                <!-- Overview Stats Grid (KPIs) -->
+                <section class="kpi-grid">
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-icon total-students">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <div class="kpi-info">
+                            <h3>Total Students</h3>
+                            <div class="kpi-value-container">
+                                <span class="kpi-value" id="kpi-total-students">0</span>
+                                <span class="kpi-trend trend-up"><i class="fa-solid fa-caret-up"></i> +4 new</span>
+                            </div>
+                            <p class="kpi-desc">Registered in current view</p>
+                        </div>
+                    </div>
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-icon class-avg">
+                            <i class="fa-solid fa-square-poll-vertical"></i>
+                        </div>
+                        <div class="kpi-info">
+                            <h3>Class Average GPA</h3>
+                            <div class="kpi-value-container">
+                                <span class="kpi-value" id="kpi-class-avg">0.0%</span>
+                                <span class="kpi-trend trend-up" id="kpi-class-avg-grade">A</span>
+                            </div>
+                            <p class="kpi-desc">Based on term performance</p>
+                        </div>
+                    </div>
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-icon attendance-rate">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <div class="kpi-info">
+                            <h3>Avg Attendance</h3>
+                            <div class="kpi-value-container">
+                                <span class="kpi-value" id="kpi-attendance">0.0%</span>
+                                <span class="kpi-trend trend-up" id="kpi-attendance-status">Optimal</span>
+                            </div>
+                            <p class="kpi-desc">Target threshold is 75%</p>
+                        </div>
+                    </div>
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-icon at-risk">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <div class="kpi-info">
+                            <h3>At Risk Students</h3>
+                            <div class="kpi-value-container">
+                                <span class="kpi-value" id="kpi-at-risk">0</span>
+                                <span class="kpi-trend trend-down" id="kpi-at-risk-pct">0.0%</span>
+                            </div>
+                            <p class="kpi-desc">Requires academic intervention</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Charts Grid -->
+                <section class="charts-grid">
+                    <!-- Grade Distribution (Bar Chart) -->
+                    <div class="chart-card glass-card">
+                        <div class="chart-header">
+                            <h3>Academic Grade Distribution</h3>
+                            <div class="chart-actions">
+                                <span class="chart-badge">Grades Distribution</span>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="chart-grade-dist"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Subject Comparison (Radar Chart) -->
+                    <div class="chart-card glass-card">
+                        <div class="chart-header">
+                            <h3>Subject Performance Strengths</h3>
+                            <div class="chart-actions">
+                                <span class="chart-badge">Mean Subject Scores</span>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="chart-subject-radar"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Attendance vs Performance (Scatter Plot) -->
+                    <div class="chart-card glass-card">
+                        <div class="chart-header">
+                            <h3>Attendance vs. Performance Correlation</h3>
+                            <div class="chart-actions">
+                                <span class="chart-badge">Scatter Analysis</span>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="chart-attendance-scatter"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Term Progress (Line Chart) -->
+                    <div class="chart-card glass-card">
+                        <div class="chart-header">
+                            <h3>Class Progression Trends</h3>
+                            <div class="chart-actions">
+                                <span class="chart-badge">Term-over-Term</span>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="chart-term-progression"></canvas>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 2: STUDENTS DIRECTORY -->
+            <div id="tab-directory" class="tab-pane">
+                <div class="directory-container glass-card">
+                    <div class="directory-header">
+                        <h2>Students Roster</h2>
+                        <div class="directory-stats">
+                            Showing <span id="displayed-students-count">0</span> of <span id="total-students-count">0</span> students
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="students-table" id="students-table">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-sort="name">Student Name <i class="fa-solid fa-sort"></i></th>
+                                    <th class="sortable" data-sort="grade">Grade Level <i class="fa-solid fa-sort"></i></th>
+                                    <th class="sortable" data-sort="average">Overall Avg <i class="fa-solid fa-sort"></i></th>
+                                    <th class="sortable" data-sort="attendance">Attendance <i class="fa-solid fa-sort"></i></th>
+                                    <th>Subject Breakdown</th>
+                                    <th class="sortable" data-sort="status">Status <i class="fa-solid fa-sort"></i></th>
+                                    <th class="actions-header">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="student-table-body">
+                                <!-- Loaded dynamically via app.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Empty Table Placeholder -->
+                    <div class="empty-state hidden" id="empty-state">
+                        <i class="fa-solid fa-users-slash"></i>
+                        <h3>No Students Found</h3>
+                        <p>No student matches your current search criteria or filters.</p>
+                        <button class="btn btn-secondary btn-sm" id="btn-clear-search">Reset Filters</button>
+                    </div>
+                    <!-- Table Pagination -->
+                    <div class="table-pagination">
+                        <div class="pagination-info">
+                            Showing page <span id="current-page">1</span> of <span id="total-pages">1</span>
+                        </div>
+                        <div class="pagination-buttons">
+                            <button class="btn-pagi" id="pagi-prev" disabled><i class="fa-solid fa-chevron-left"></i></button>
+                            <div class="pagi-numbers" id="pagi-numbers">
+                                <!-- Dynamic pagination numbers -->
+                            </div>
+                            <button class="btn-pagi" id="pagi-next" disabled><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: ANALYTICS DEEP DIVE -->
+            <div id="tab-analytics" class="tab-pane">
+                <div class="analytics-deep-dive">
+                    <div class="analytics-row">
+                        <!-- Top Subjects Strengths -->
+                        <div class="stats-panel glass-card">
+                            <div class="panel-header">
+                                <h3>Subject Proficiency Summary</h3>
+                                <i class="fa-solid fa-award header-icon text-primary"></i>
+                            </div>
+                            <div class="subjects-proficiency-list" id="subjects-proficiency">
+                                <!-- Rendered dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Statistical Metrics Summary -->
+                        <div class="stats-panel glass-card">
+                            <div class="panel-header">
+                                <h3>Academic Class Metrics</h3>
+                                <i class="fa-solid fa-calculator header-icon text-success"></i>
+                            </div>
+                            <div class="metrics-list">
+                                <div class="metric-item">
+                                    <span class="metric-label">Median Class Score</span>
+                                    <span class="metric-val" id="metric-median">0.0%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Standard Deviation</span>
+                                    <span class="metric-val" id="metric-stddev">0.0%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">90th Percentile Score</span>
+                                    <span class="metric-val" id="metric-p90">0.0%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Passing Rate</span>
+                                    <span class="metric-val text-success" id="metric-pass-rate">0.0%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Attendance Compliance Rate</span>
+                                    <span class="metric-val text-primary" id="metric-attendance-compliance">0.0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk and Intervention List -->
+                    <div class="risk-analysis-panel glass-card">
+                        <div class="panel-header">
+                            <h3>At-Risk Students Requiring Intervention</h3>
+                            <span class="badge badge-danger" id="at-risk-badge-count">0 Students</span>
+                        </div>
+                        <p class="panel-desc">Students below the 60% average mark or below 75% class attendance requirement, sorted by urgent priority.</p>
+                        <div class="table-responsive">
+                            <table class="students-table list-table">
+                                <thead>
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Grade</th>
+                                        <th>Average Score</th>
+                                        <th>Attendance</th>
+                                        <th>Primary Risk Category</th>
+                                        <th>Urgency Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="risk-table-body">
+                                    <!-- Rendered dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL: ADD STUDENT -->
+    <div class="modal-overlay" id="modal-add-student-overlay">
+        <div class="modal-container glass-card">
+            <div class="modal-header">
+                <h2>Add New Student</h2>
+                <button class="modal-close" id="modal-add-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="add-student-form">
+                <div class="modal-body">
+                    <!-- Basic Info -->
+                    <div class="form-row">
+                        <div class="form-group col-6">
+                            <label for="new-name">Full Name</label>
+                            <input type="text" id="new-name" required placeholder="e.g. Liam Johnson">
+                        </div>
+                        <div class="form-group col-3">
+                            <label for="new-grade">Grade Level</label>
+                            <select id="new-grade" required>
+                                <option value="9">Grade 9</option>
+                                <option value="10">Grade 10</option>
+                                <option value="11" selected>Grade 11</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-3">
+                            <label for="new-attendance">Attendance (%)</label>
+                            <input type="number" id="new-attendance" required min="0" max="100" value="95" placeholder="e.g. 95">
+                        </div>
+                    </div>
+
+                    <h4 class="form-section-title">Current Subject Performance</h4>
+                    <div class="form-row">
+                        <div class="form-group col-2-4">
+                            <label for="score-math">Math (0-100)</label>
+                            <input type="number" id="score-math" required min="0" max="100" value="80">
+                        </div>
+                        <div class="form-group col-2-4">
+                            <label for="score-science">Science (0-100)</label>
+                            <input type="number" id="score-science" required min="0" max="100" value="80">
+                        </div>
+                        <div class="form-group col-2-4">
+                            <label for="score-english">English (0-100)</label>
+                            <input type="number" id="score-english" required min="0" max="100" value="80">
+                        </div>
+                        <div class="form-group col-2-4">
+                            <label for="score-history">History (0-100)</label>
+                            <input type="number" id="score-history" required min="0" max="100" value="80">
+                        </div>
+                        <div class="form-group col-2-4">
+                            <label for="score-art">Art (0-100)</label>
+                            <input type="number" id="score-art" required min="0" max="100" value="80">
+                        </div>
+                    </div>
+
+                    <h4 class="form-section-title">Historical Term Averages</h4>
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label for="score-term1">Term 1 Avg (%)</label>
+                            <input type="number" id="score-term1" required min="0" max="100" value="78">
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="score-term2">Term 2 Avg (%)</label>
+                            <input type="number" id="score-term2" required min="0" max="100" value="80">
+                        </div>
+                        <div class="form-group col-4">
+                            <label for="score-term3">Term 3 Avg (%) (Current)</label>
+                            <input type="number" id="score-term3" required min="0" max="100" value="82">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btn-add-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: STUDENT DETAILS / ANALYSIS -->
+    <div class="modal-overlay" id="modal-details-overlay">
+        <div class="modal-container modal-lg glass-card">
+            <div class="modal-header">
+                <h2>Detailed Student Profile</h2>
+                <button class="modal-close" id="modal-details-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="student-details-content">
+                <!-- Rendered dynamically via app.js -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btn-details-close-footer">Close Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- JS Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
