@@ -1,7 +1,6 @@
 # 🎓 EduGraph —  Records Analytics Portal
 
 EduGraph is a premium, state-of-the-art EdTech SaaS welcome landing page and interactive analytics workspace. Designed for educators, it transforms raw student records into beautiful, high-fidelity visual insights, aiding in academic tracking, performance predictions, and attendance monitoring.
-LIVE LINK - https://karan0dev.github.io/EduGraph-Data-Visualisation/
 ---
 
 ## ✨ Features
